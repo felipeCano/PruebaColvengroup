@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PruebaColvengroup</string>
+    <string name="tracking_enabled_notif">Tracking is currently enabled. Tap to cancel.</string>
+    <string name="test_email">francofrancopacho@hotmail.com</string>
+    <string name="test_password">cEkQMWBvSxo:APA91bFButl5sgeC1oUxhRq3i-IOl2UqhJkEpcVFVy8nw1ABzRnYWt3sRfEX3tGJppav0nR_E9K6Kx9bFC6eq6mlKWMaAQxhW_V9o3frQkpDphv0of32v3y1hC-WTyfEk5JnwY9L1Gbj</string>
+    <string name="firebase_path">location</string>
+    <string name="msg_location_service_started">Coordinates</string>
+    <string name="no_google_playservice_available">no playservice available</string>
+    <string name="title_alert_no_intenet">no internet</string>
+    <string name="msg_alert_no_internet">no internet</string>
+    <string name="btn_label_refresh">refresh</string>
+    <string name="permission_rationale">permission</string>
+    <string name="permission_denied_explanation">dont have permission</string>
+    <string name="settings">settings</string>
+</resources>
