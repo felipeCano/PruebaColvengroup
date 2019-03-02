@@ -29,8 +29,6 @@ dependencies {
     //implementantion material desing
     implementation 'com.android.support:design:27.1.1'
 
-
-
     //implementantion Firebase
     implementation 'com.google.firebase:firebase-core:16.0.7'
     implementation 'com.google.firebase:firebase-database:16.0.6'
@@ -46,5 +44,8 @@ dependencies {
     //implementes contrains
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
