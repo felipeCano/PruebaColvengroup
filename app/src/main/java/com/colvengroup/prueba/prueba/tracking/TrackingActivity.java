@@ -1,6 +1,7 @@
 package com.colvengroup.prueba.prueba.tracking;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -26,10 +27,10 @@ import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.colvengroup.prueba.prueba.BuildConfig;
+import com.colvengroup.prueba.prueba.MapKotlinActivity;
 import com.colvengroup.prueba.prueba.R;
 import com.colvengroup.prueba.prueba.data.DataUsuario;
 import com.colvengroup.prueba.prueba.managers.UsuarioManager;
-import com.colvengroup.prueba.prueba.map.ActivityMap;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.android.gms.tasks.Continuation;
@@ -43,9 +44,15 @@ import java.util.Map;
 
 public class TrackingActivity extends AppCompatActivity implements UsuarioManager.OnUserManagerListener, CompoundButton.OnCheckedChangeListener {
 
+    public static final String LATITUD_KOTLIN = "lati";
+    public static final String LONGITUD_KOTLIN = "longit";
+
    final UsuarioManager usuarioManager = new UsuarioManager(this);
    List<DataUsuario> dataUsuario;
     private static final String TAG = TrackingActivity.class.getSimpleName();
+
+    String lati;
+    String longit;
 
     LocalBroadcastManager localBroadcastManager ;
     BroadcastReceiver broadcastReceiver;
@@ -62,6 +69,7 @@ public class TrackingActivity extends AppCompatActivity implements UsuarioManage
     ToggleButton toggle;
     private FirebaseFunctions mFunctions;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,12 +78,15 @@ public class TrackingActivity extends AppCompatActivity implements UsuarioManage
         mcallFunctions = findViewById(R.id.textFunctions);
         toggle = findViewById(R.id.toggleButton);
         toggle.setOnCheckedChangeListener(this);
+
         localBroadcastManager =  LocalBroadcastManager.getInstance(this);
         broadcastReceiver = new BroadcastReceiver() {
             @Override
             public void onReceive(Context context, Intent intent) {
                 String latitude = intent.getStringExtra(LocationMonitoringService.EXTRA_LATITUDE);
                 String longitude = intent.getStringExtra(LocationMonitoringService.EXTRA_LONGITUDE);
+                lati  = intent.getStringExtra(LocationMonitoringService.EXTRA_LATITUDE);
+                longit = intent.getStringExtra(LocationMonitoringService.EXTRA_LONGITUDE);
 
                 if (dataUsuario != null && latitude != null && longitude != null) {
                     mMsgView.setText(getString(R.string.msg_location_service_started) + "\n Latitude : " + latitude + "\n Longitude: " + longitude);
@@ -385,7 +396,10 @@ public class TrackingActivity extends AppCompatActivity implements UsuarioManage
         super.onDestroy();
     }
     public void gomaps(View v){
-        Intent intent = new Intent(this, ActivityMap.class);
+        Log.d("ayudaa", dataUsuario.get(0).getLatitud());
+        Intent intent = new Intent(this, MapKotlinActivity.class);
+        intent.putExtra(LATITUD_KOTLIN,  dataUsuario.get(0).getLatitud());
+        intent.putExtra(LONGITUD_KOTLIN,  dataUsuario.get(0).getLongitud());
         startActivity(intent);
     }
 
